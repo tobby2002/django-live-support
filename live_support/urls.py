@@ -1,10 +1,7 @@
-try:
-    from django.conf.urls.defaults import patterns, include, url
-except ImportError:
-    from django.conf.urls import patterns, include, url
 from live_support import views
+from django.conf.urls import *
 
-urlpatterns = patterns('', 
+urlpatterns = [
     url('^$', views.start_chat, name='start_chat'), 
     url('^(?P<support_group_id>\d+)/$', views.start_chat, name='start_chat_for_group'),
     url('^ajax/get_messages/$', views.get_messages, name='get_messages'), 
@@ -15,5 +12,5 @@ urlpatterns = patterns('',
     url('^(?P<chat_uuid>[\w-]+)/get_messages/$', views.client_get_messages, name='client_get_messages'), 
     url('^(?P<chat_uuid>[\w-]+)/post_message/$', views.client_post_message, name='client_post_message'), 
     url('^(?P<chat_uuid>[\w-]+)/$', views.client_chat, name='client_chat'),
-)
+]
 
